@@ -37,15 +37,37 @@ startGame()
 function moveController(key) {
     switch (key) {
         case 'a':
+            moveFn(left, 'left', 'x')
             break
         case 'd':
+            moveFn(right, 'right', 'x')
             break
         case 'w':
+            moveFn(left, 'left', 'y')
             break
         case 's':
+            moveFn(right, 'right', 'y')
             break
     }
 }
+
+
+function transope(array) {
+    return array.reduce((prev, next) => next.map((item, i) =>
+        (prev[i] || []).concat(next[i])
+    ), [])
+}
+
+function moveFn(direction, dir, axis) {
+    axis === 'y' && (data = transope(data))
+    clearZeroesAndFill(dir)
+    direction()
+    direction()
+    axis === 'y' && (data = transope(data))
+    addNumber()
+    reDrawField()
+}
+
 
 function left() {
     data.map(row => {
