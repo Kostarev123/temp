@@ -1,5 +1,7 @@
 const game = document.querySelector('.game')
 const body = document.querySelector('body')
+const newGameBtn = document.querySelector('.new-game')
+
 const colors = {
     0: 'white',
     2: '#F048AC',
@@ -25,6 +27,15 @@ let score = 0
 body.addEventListener('keydown', (event) => {
     moveController(event.key)
 })
+
+newGameBtn.addEventListener('click', (e) => {
+    alert('Кнопка "Новая игра" нажата')
+     data = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+     isGameOver = false
+     score = 0
+     startGame()
+})
+
 
 function startGame() {
     addNumber()
@@ -74,6 +85,7 @@ function left() {
         for (let i = 0; i < row.length; i++) {
             if (row[i] === row[i + 1]) {
                 row[i] = row[i] * 2
+                score += row[i]
                 row[i + 1] = 0
             }
         }
@@ -85,6 +97,7 @@ function right() {
         for (let i = row.length - 1; i >= 0; i--) {
             if (row[i] === row[i - 1]) {
                 row[i] = row[i] * 2
+                score += row[i]
                 row[i - 1] = 0
             }
         }
@@ -95,7 +108,7 @@ function right() {
 function addNumber() {
     checkGameIsOver()
     if (isGameOver) {
-        console.log('game over')
+        gameOver()
         return
     }
     const random = generateRandomNumber(1, 10)
@@ -109,6 +122,15 @@ function addNumber() {
         }
     }
 }
+function gameOver() {
+    document.querySelector('.board').innerHTML = `
+    <div> 
+        <h1 class="game-over"> GAME OVER </h1> 
+        <div class="res"> Score: ${score}</div>
+    </div>
+    `
+}
+
 
 function checkGameIsOver() {
     let ar = []
@@ -147,4 +169,5 @@ function reDrawField() {
         square.innerHTML = num ? num : ''
         game.append(square)
     }
+    document.querySelector('.score').innerHTML = score
 }

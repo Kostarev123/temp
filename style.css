@@ -40,7 +40,7 @@
     transition: all 2s ease-in;
 }
 
-.square{
+.square {
     margin: 2px;
     color: #111;
     width: 100px;
@@ -51,8 +51,54 @@
     font-size: 42px;
     background-color: #fff;
 }
-.score{
+
+.score {
     color: blueviolet;
     font-style: italic;
     font-size: 38px;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+    border: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    background-color: lawngreen;
+    cursor: pointer;
+}
+
+.new-game {
+    background-color: rgb(142, 131, 209);
+    color: azure;
+    transition: all .25s ease-in-out;
+    outline: none;
+}
+
+.new-game:hover {
+    background-color: rgb(93, 75, 212);
+    color: aqua;
+}
+
+.new-game:active {
+    background-color: rgb(136, 132, 160);
+}
+
+
+.back-game {
+    background-color: yellowgreen;
+    color: #8f0d0d;
+}
+
+.back-game:hover {
+    background-color: rgb(62, 193, 14);
+    color: azure;
+    transition: all .25s ease-in-out;
+    outline: none;
+}
+
+.back-game:active {
+    background-color: rgb(170, 181, 11);
 }
