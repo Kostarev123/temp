@@ -1,6 +1,7 @@
 const game = document.querySelector('.game')
 const body = document.querySelector('body')
 const newGameBtn = document.querySelector('.new-game')
+const backBtn = document.querySelector('.back-game')
 
 const colors = {
     0: 'white',
@@ -30,10 +31,27 @@ body.addEventListener('keydown', (event) => {
 
 newGameBtn.addEventListener('click', (e) => {
     alert('Кнопка "Новая игра" нажата')
-     data = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-     isGameOver = false
-     score = 0
-     startGame()
+    data = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    isGameOver = false
+    score = 0
+    startGame()
+})
+
+let LIMIT = 5
+let PREV_SCORE = 0
+prev = []
+
+backBtn.addEventListener('click', (e) => {
+    if (prev.length && LIMIT > 0) {
+        data = prev
+        score = PREV_SCORE
+        prev = []
+        reDrawField()
+
+        alert(`Шаг назад выполнен\nОсталось ${--LIMIT} раз`)
+    } else {
+        alert('Действите выполнить невозможно')
+    }
 })
 
 
@@ -70,6 +88,8 @@ function transope(array) {
 }
 
 function moveFn(direction, dir, axis) {
+    prev = data
+    PREV_SCORE = score
     axis === 'y' && (data = transope(data))
     clearZeroesAndFill(dir)
     direction()
